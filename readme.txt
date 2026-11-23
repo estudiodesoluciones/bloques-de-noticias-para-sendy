@@ -1,4 +1,4 @@
-=== Bloques de noticias para Sendy ===
+=== Estudio de Soluciones – Bloques de noticias para Sendy ===
 Contributors: estudiodesoluciones
 Tags: newsletter, sendy, email, news
 Requires at least: 6.3
@@ -14,12 +14,12 @@ Select WordPress posts, customize their layout and create a draft in Sendy, or e
 
 Build a newsletter from up to 100 published posts. Filter by category or date, reorder stories and choose the images, excerpts and buttons to include. Preview the result and copy or download the HTML. To create a draft directly, connect your own Sendy installation over HTTPS. Campaign delivery stays under your control in Sendy.
 
-Created by [Estudio de Soluciones](https://estudiodesoluciones.com).
+An independent integration created by [Estudio de Soluciones](https://estudiodesoluciones.com). It is not affiliated with or endorsed by Sendy.
 
 == Installation ==
 
 1. Upload the plugin ZIP under Plugins > Add New and activate it.
-2. Open Bloques de noticias para Sendy in the admin menu. Select public posts, arrange them and generate a preview.
+2. Open Estudio de Soluciones – Bloques de noticias para Sendy in the admin menu. Select public posts, arrange them and generate a preview.
 3. Copy the story fragment or download the whole email as HTML.
 4. To create a draft directly, enter your Sendy HTTPS URL, API key, brand ID, sender and reply-to address in the settings. Save and test the connection.
 5. Create the draft and open it in Sendy. In Sendy 7, choose Drag & Drop to continue editing.

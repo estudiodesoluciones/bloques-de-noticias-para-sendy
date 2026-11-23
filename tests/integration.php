@@ -1,7 +1,7 @@
 <?php
 // wp eval-file /path/to/tests/integration.php — API simulada, sin envíos.
 if (!defined('ABSPATH')) { exit("Usa WP-CLI.\n"); }
-if (!class_exists('ES_SN_Content')) { require dirname(__DIR__) . '/bloques-de-noticias-para-sendy.php'; }
+if (!class_exists('ES_SN_Content')) { require dirname(__DIR__) . '/estudio-de-soluciones-bloques-de-noticias-para-sendy.php'; }
 $saved = get_option('es_sn_settings', null); $created = []; $category = 0; $checks = 0; $calls = [];
 $original_user = get_current_user_id();
 $assert = static function ($ok, $message) use (&$checks) { if (!$ok) { throw new RuntimeException('FAIL: ' . $message); } $checks++; };

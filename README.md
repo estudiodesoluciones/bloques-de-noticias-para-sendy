@@ -1,4 +1,4 @@
-# Bloques de noticias para Sendy
+# Estudio de Soluciones – Bloques de noticias para Sendy
 
 Plugin independiente de WordPress creado por [Estudio de Soluciones](https://estudiodesoluciones.com), distribuido bajo GPL-2.0-or-later.
 
@@ -6,7 +6,7 @@ No hay dominios, credenciales, marcas ni rutas de ese sitio en el código distri
 
 ## Estructura
 
-- `bloques-de-noticias-para-sendy.php`: carga y metadatos.
+- `estudio-de-soluciones-bloques-de-noticias-para-sendy.php`: carga y metadatos.
 - `includes/`: configuración cifrada, selección/renderizado, API y administración.
 - `assets/`: interfaz de administración, sin dependencias externas.
 - `tests/integration.php`: pruebas ejecutables con WP-CLI; fixtures temporales y API simulada.
@@ -20,7 +20,7 @@ PHP 8.1+, WordPress 6.3+, OpenSSL para guardar la API key. También se puede pro
 Ejecutar en un WordPress de pruebas:
 
 ```sh
-wp eval-file /ruta/bloques-de-noticias-para-sendy/tests/integration.php
+wp eval-file /ruta/estudio-de-soluciones-bloques-de-noticias-para-sendy/tests/integration.php
 ```
 
 Las pruebas crean y eliminan entradas/categorías temporales y restauran las opciones del plugin. Interceptan las llamadas HTTP: no crean campañas reales ni envían correos. No ejecutarlas simultáneamente con usuarios que estén configurando el plugin.
@@ -39,7 +39,7 @@ La primera versión soporta instalación por sitio. No está preparada para acti
 
 Ejecutar `python3 build.py` desde el proyecto para regenerar el ZIP de la versión indicada en la cabecera del plugin.
 
-Incluir únicamente `bloques-de-noticias-para-sendy.php`, `uninstall.php`, `includes/`, `assets/`, `readme.txt` y `LICENSE` en una carpeta `bloques-de-noticias-para-sendy/` dentro del ZIP. Ningún ajuste del banco de pruebas forma parte del paquete.
+Incluir únicamente `estudio-de-soluciones-bloques-de-noticias-para-sendy.php`, `uninstall.php`, `includes/`, `assets/`, `readme.txt` y `LICENSE` en una carpeta `estudio-de-soluciones-bloques-de-noticias-para-sendy/` dentro del ZIP. Ningún ajuste del banco de pruebas forma parte del paquete.
 
 ## Migración desde Sendy News
 

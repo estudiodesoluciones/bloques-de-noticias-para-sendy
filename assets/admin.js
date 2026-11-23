@@ -1,4 +1,4 @@
-/* Bloques de noticias para Sendy — Estudio de Soluciones. No third-party scripts. */
+/* Estudio de Soluciones – Bloques de noticias para Sendy — Estudio de Soluciones. No third-party scripts. */
 (() => {
     'use strict';
     const $ = id => document.getElementById(id);
@@ -107,7 +107,7 @@
     });
     $('es-sn-download').addEventListener('click', () => {
         const url = URL.createObjectURL(new Blob([$ ('es-sn-code').value], {type:'text/html;charset=utf-8'}));
-        const a = document.createElement('a'); a.href = url; a.download = 'bloques-de-noticias-para-sendy-' + $('es-sn-export').value + '.html'; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+        const a = document.createElement('a'); a.href = url; a.download = 'estudio-de-soluciones-bloques-de-noticias-para-sendy-' + $('es-sn-export').value + '.html'; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
     });
     $('es-sn-send').addEventListener('submit', async e => {
         e.preventDefault(); if (!preview || stale || creating) return;

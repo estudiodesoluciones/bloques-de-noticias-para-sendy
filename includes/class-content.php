@@ -7,13 +7,13 @@ final class ES_SN_Content {
     public static function date(string $value): string {
         if ($value === '') { return ''; }
         $date = DateTimeImmutable::createFromFormat('!Y-m-d', $value);
-        if (!$date || $date->format('Y-m-d') !== $value) { throw new InvalidArgumentException(esc_html__('Fecha no válida.', 'bloques-de-noticias-para-sendy')); }
+        if (!$date || $date->format('Y-m-d') !== $value) { throw new InvalidArgumentException(esc_html__('Fecha no válida.', 'estudio-de-soluciones-bloques-de-noticias-para-sendy')); }
         return $value;
     }
 
     public static function search(array $in): array {
         $after = self::date((string) ($in['after'] ?? '')); $before = self::date((string) ($in['before'] ?? ''));
-        if ($after && $before && $after > $before) { throw new InvalidArgumentException(esc_html__('La fecha inicial debe ser anterior a la final.', 'bloques-de-noticias-para-sendy')); }
+        if ($after && $before && $after > $before) { throw new InvalidArgumentException(esc_html__('La fecha inicial debe ser anterior a la final.', 'estudio-de-soluciones-bloques-de-noticias-para-sendy')); }
         $limit = max(1, min(self::MAX_POSTS, absint($in['limit'] ?? 10)));
         $args = ['post_type'=>'post', 'post_status'=>'publish', 'has_password'=>false, 'posts_per_page'=>$limit,
             'orderby'=>['date'=>'DESC','ID'=>'DESC'], 'ignore_sticky_posts'=>true, 's'=>sanitize_text_field($in['search'] ?? '')];
@@ -63,8 +63,8 @@ final class ES_SN_Content {
             $out[$k] = max($bounds[1], min($bounds[2], isset($in[$k]) ? (int) $in[$k] : $bounds[0]));
         }
         $out['font'] = in_array($in['font'] ?? '', ['Arial','Georgia','Verdana'], true) ? $in['font'] : 'Arial';
-        $out['heading'] = sanitize_text_field($in['heading'] ?? __('Noticias', 'bloques-de-noticias-para-sendy'));
-        $out['button'] = sanitize_text_field($in['button'] ?? __('Leer más', 'bloques-de-noticias-para-sendy'));
+        $out['heading'] = sanitize_text_field($in['heading'] ?? __('Noticias', 'estudio-de-soluciones-bloques-de-noticias-para-sendy'));
+        $out['button'] = sanitize_text_field($in['button'] ?? __('Leer más', 'estudio-de-soluciones-bloques-de-noticias-para-sendy'));
         $out['images'] = !empty($in['images']); $out['separator'] = !empty($in['separator']);
         $out['source'] = ($in['source'] ?? '') === 'content' ? 'content' : 'excerpt';
         return $out;
@@ -72,13 +72,13 @@ final class ES_SN_Content {
 
     public static function build(array $ids, array $input): array {
         $ids = array_values(array_unique(array_filter(array_map('absint', $ids))));
-        if (!$ids || count($ids) > self::MAX_POSTS) { throw new InvalidArgumentException(esc_html__('Selecciona entre 1 y 100 noticias.', 'bloques-de-noticias-para-sendy')); }
+        if (!$ids || count($ids) > self::MAX_POSTS) { throw new InvalidArgumentException(esc_html__('Selecciona entre 1 y 100 noticias.', 'estudio-de-soluciones-bloques-de-noticias-para-sendy')); }
         $s = self::style($input); $rows = ''; $plain = $s['heading'] . "\n\n"; $warnings = [];
         $font = $s['font'] . ($s['font']==='Georgia' ? ',serif' : ',Helvetica,sans-serif');
         $inner = $s['width'] - 2 * $s['spacing'];
         foreach ($ids as $id) {
             $p = get_post($id);
-            if (!$p || $p->post_type !== 'post' || $p->post_status !== 'publish' || $p->post_password) { throw new InvalidArgumentException(esc_html__('La selección contiene una noticia no pública. Actualiza el listado.', 'bloques-de-noticias-para-sendy')); }
+            if (!$p || $p->post_type !== 'post' || $p->post_status !== 'publish' || $p->post_password) { throw new InvalidArgumentException(esc_html__('La selección contiene una noticia no pública. Actualiza el listado.', 'estudio-de-soluciones-bloques-de-noticias-para-sendy')); }
             $title = html_entity_decode(get_the_title($p), ENT_QUOTES | ENT_HTML5, 'UTF-8');
             $t = esc_html($title); $url = get_permalink($p); $u = esc_url($url);
             $text = self::excerpt($s['source']==='excerpt' && $p->post_excerpt !== '' ? $p->post_excerpt : $p->post_content, $s['length']);
@@ -89,7 +89,7 @@ final class ES_SN_Content {
                 $rows .= '<tr><td><a href="' . $u . '"><img src="' . esc_url($image) . '" alt="' . esc_attr($title) . '" width="' . $inner . '" style="display:block;width:100%;max-width:' . $inner . 'px;height:auto;border:0;"></a></td></tr>';
             } elseif ($s['images']) {
                 /* translators: %s: title of the post without a featured image. */
-                $warnings[] = sprintf(__('Sin imagen destacada: %s', 'bloques-de-noticias-para-sendy'), $title); }
+                $warnings[] = sprintf(__('Sin imagen destacada: %s', 'estudio-de-soluciones-bloques-de-noticias-para-sendy'), $title); }
             if ($text !== '') { $rows .= '<tr><td style="padding:20px 0;font-family:' . $font . ';font-size:' . $s['font_size'] . 'px;line-height:1.6;color:' . $s['text_color'] . ';"><p style="margin:0;">' . esc_html($text) . '</p></td></tr>'; }
             if ($s['button'] !== '') { $rows .= '<tr><td align="center" style="padding:16px 0 26px;"><a href="' . $u . '" style="display:inline-block;background-color:' . $s['accent'] . ';color:#ffffff;text-decoration:none;font-family:' . $font . ';font-size:' . $s['font_size'] . 'px;line-height:1.4;padding:12px 36px;border-radius:5px;">' . esc_html($s['button']) . '</a></td></tr>'; }
             if ($s['separator']) { $rows .= '<tr><td style="border-top:2px solid #b3b3b3;height:12px;font-size:1px;">&nbsp;</td></tr>'; }
@@ -99,9 +99,9 @@ final class ES_SN_Content {
         $heading = $s['heading'] === '' ? '' : '<tr><td align="center" style="padding:' . $s['spacing'] . 'px;font-family:' . $font . ';"><h1 style="margin:0;color:' . $s['accent'] . ';font-size:28px;">' . esc_html($s['heading']) . '</h1></td></tr>';
         $table = '<table role="presentation" align="center" width="' . $s['width'] . '" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:' . $s['width'] . 'px;background-color:' . $s['card'] . ';"><tbody>';
         $fragment = $table . $heading . $rows . '</tbody></table>';
-        $footer = '<tr><td align="center" style="padding:24px;font-family:' . $font . ';font-size:12px;line-height:1.6;color:#666666;">' . esc_html(get_bloginfo('name')) . '<br><a href="[webversion]" style="color:#666666;">' . esc_html__('Ver en el navegador', 'bloques-de-noticias-para-sendy') . '</a> · <a href="[unsubscribe]" style="color:#666666;">' . esc_html__('Darse de baja', 'bloques-de-noticias-para-sendy') . '</a></td></tr>';
+        $footer = '<tr><td align="center" style="padding:24px;font-family:' . $font . ';font-size:12px;line-height:1.6;color:#666666;">' . esc_html(get_bloginfo('name')) . '<br><a href="[webversion]" style="color:#666666;">' . esc_html__('Ver en el navegador', 'estudio-de-soluciones-bloques-de-noticias-para-sendy') . '</a> · <a href="[unsubscribe]" style="color:#666666;">' . esc_html__('Darse de baja', 'estudio-de-soluciones-bloques-de-noticias-para-sendy') . '</a></td></tr>';
         $html = '<!doctype html><html lang="' . esc_attr(get_bloginfo('language')) . '"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' . esc_html($s['heading']) . '</title></head><body style="margin:0;padding:0;background-color:' . $s['background'] . ';"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:' . $s['background'] . ';"><tbody><tr><td align="center" style="padding:24px 0;">' . $table . $heading . $rows . $footer . '</tbody></table></td></tr></tbody></table></body></html>';
-        if (strlen($html) > 95000) { $warnings[] = __('El HTML supera 95 KB: algunos clientes de correo podrían recortarlo. Reduce el número de noticias.', 'bloques-de-noticias-para-sendy'); }
+        if (strlen($html) > 95000) { $warnings[] = __('El HTML supera 95 KB: algunos clientes de correo podrían recortarlo. Reduce el número de noticias.', 'estudio-de-soluciones-bloques-de-noticias-para-sendy'); }
         return ['html'=>$html,'fragment'=>$fragment,'plain'=>$plain,'warnings'=>$warnings,'count'=>count($ids),'bytes'=>strlen($html)];
     }
 }

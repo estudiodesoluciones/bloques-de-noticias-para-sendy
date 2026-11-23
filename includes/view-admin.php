@@ -1,6 +1,6 @@
 <?php defined('ABSPATH') || exit; ?>
 <div class="wrap es-sn">
-    <h1>Bloques de noticias para Sendy <span class="es-sn-badge">1.0.0</span></h1>
+    <h1>Estudio de Soluciones – Bloques de noticias para Sendy <span class="es-sn-badge">1.0.0</span></h1>
     <p>De tus noticias a tu próxima newsletter. Selecciona, revisa y termina de maquetar en Sendy.</p>
     <p class="es-sn-credit">Creado por <a href="https://estudiodesoluciones.com" target="_blank" rel="noopener noreferrer">Estudio de Soluciones</a>.</p>
     <div id="es-sn-status" role="status" aria-live="polite"></div>

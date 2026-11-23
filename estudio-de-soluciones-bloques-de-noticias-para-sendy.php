@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Bloques de noticias para Sendy
+ * Plugin Name: Estudio de Soluciones – Bloques de noticias para Sendy
  * Description: Selecciona noticias, diseña su listado y crea borradores en Sendy o copia su HTML.
  * Version: 1.0.0
  * Author: Estudio de Soluciones
@@ -9,7 +9,7 @@
  * Requires PHP: 8.1
  * License: GPL-2.0-or-later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: bloques-de-noticias-para-sendy
+ * Text Domain: estudio-de-soluciones-bloques-de-noticias-para-sendy
  */
 defined('ABSPATH') || exit;
 define('ES_SN_VERSION', '1.0.0');
